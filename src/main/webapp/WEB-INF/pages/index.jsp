@@ -22,6 +22,7 @@
                 <th>Surname</th>
                 <th>Status</th>
                 <th>Days remaining</th>
+                <th>Operations</th>
             </tr>
             </thead>
             <tbody>
@@ -31,6 +32,8 @@
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.isActive}"></td>
                 <td th:text="${user.daysRemained}"></td>
+                <td><a th:href="@{/updateUser(userId=${user.id})}">Update</a></td>
+                <td><a th:href="@{/deleteUser(userId=${user.id})}">Delete</a></td>
             </tr>
 
             </tbody>

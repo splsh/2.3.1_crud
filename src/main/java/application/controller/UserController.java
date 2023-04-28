@@ -8,10 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -23,7 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping( "/")
+    @GetMapping("/")
     public String firstPage(ModelMap model) {
         model.addAttribute("user", new User());
         model.addAttribute("userList", userService.getUserList());
@@ -42,16 +39,16 @@ public class UserController {
         return "redirect:/";
     }
 
-//    @GetMapping(value = "/")
-//    public String firstPage(ModelMap model) {
-//        String test = "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO";
-//        model.addAttribute("test", test);
-//        List<String> messages = new ArrayList<>();
-//        messages.add("Hello!");
-//        messages.add("I'm Spring MVC application");
-//        messages.add("5.2.0 version by sep'19 ");
-//        model.addAttribute("messages", messages);
-//        return "index";
-//    }
+    @GetMapping("/updateUser")
+    public String updateUser(@RequestParam("userId") long id, Model model) {
+        model.addAttribute(userService.getUserById(id));
+        return "user-info";
+    }
+
+    @GetMapping("/deleteUser")
+    public String deleteUSer(@RequestParam("userId") long id) {
+        userService.deleteUser(userService.getUserById(id));
+        return "redirect:/";
+    }
 
 }
