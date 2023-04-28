@@ -10,16 +10,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(length = 30)
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column
+    @Column(name = "is_active")
     private boolean isActive;
 
-    @Column
+    @Column(name = "days_remained")
     private int daysRemained;
 
     public User() {
@@ -56,7 +56,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
