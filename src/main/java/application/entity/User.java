@@ -82,4 +82,28 @@ public class User {
                 ", daysRemained=" + daysRemained +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        if (isActive != user.isActive) return false;
+        if (daysRemained != user.daysRemained) return false;
+        if (!firstName.equals(user.firstName)) return false;
+        return lastName.equals(user.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + (isActive ? 1 : 0);
+        result = 31 * result + daysRemained;
+        return result;
+    }
 }
